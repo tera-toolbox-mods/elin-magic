@@ -1,0 +1,108 @@
+<html>
+	<head>
+		<script>
+			window.addEventListener('error', function(e) {
+				_tera_client_proxy_.alert('[Elin Magic] Error: ' + e.message)
+			})
+
+			window.onload = function() {
+				_tera_client_proxy_.resize_to(350, 700)
+				_tera_client_proxy_.set_title('Elin Magic')
+			}
+		</script>
+		<script src="/lib/jquery-3.2.1.min.js"></script>
+		<script src="/vars"></script>
+		<script defer src="/lib/vue.js?2.5.16"></script>
+		<script defer src="/main.js"></script>
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<div id="app">
+			<div class="toolbar">
+				<a :class="{active: tab === 'appearance'}" @click="tab = 'appearance'">Character</a><!--
+				--><a :class="{active: tab === 'details'}" @click="tab = 'details'">Face+</a><!--
+				--><a :class="{active: tab === 'shape'}" @click="tab = 'shape'">Body+</a>
+			</div>
+			<div class="content" v-if="tab === 'appearance'">
+				<sliders>
+					<slider name="Skin Color" max="99" v-model="emVars['appearance.skinColor']"></slider>
+					<slider name="Face" max="99" v-model="emVars['appearance.faceStyle']"></slider>
+					<slider name="Face Style" max="99" v-model="emVars['appearance.faceDecal']"></slider>
+					<slider name="Hairstyle" max="99" v-model="emVars['appearance.hairStyle']"></slider>
+					<slider name="Hair Color" max="255" v-model="emVars['appearance.hairColor']"></slider>
+					<slider name="Voice" :max="gender ? 4 : 5" v-model="emVars['appearance.voice']"></slider>
+					<slider name="Tattoos" max="99" v-model="emVars['appearance.tattoos']"></slider>
+				</sliders>
+			</div>
+			<div class="content" v-if="tab === 'details'">
+				<sliders>
+					<slider-h>Bones</slider-h>
+					<slider name="Brow" v-model="emVars['details.0']"></slider>
+					<slider name="Cheekbones" v-model="emVars['details.1']"></slider>
+					<slider name="Jaw" v-model="emVars['details.2']"></slider>
+					<slider name="Jaw Width" v-model="emVars['details.30']"></slider>
+					<slider name="Jaw Jut" v-model="emVars['details.3']"></slider>
+					<slider-h>Eyes</slider-h>
+					<slider name="Width" v-model="emVars['details.8']"></slider>
+					<slider name="Shape" v-model="emVars['details.28']"></slider>
+					<slider name="Height" v-model="emVars['details.9']"></slider>
+					<slider name="Separation" v-model="emVars['details.10']"></slider>
+					<slider name="Angle" v-model="emVars['details.12']"></slider>
+					<slider name="Inner Brow" v-model="emVars['details.13']"></slider>
+					<slider name="Outer Brow" v-model="emVars['details.14']"></slider>
+					<slider-h>Nose</slider-h>
+					<slider name="Extension" v-model="emVars['details.16']"></slider>
+					<slider name="Size" v-model="emVars['details.17']"></slider>
+					<slider name="Bridge" v-model="emVars['details.18']"></slider>
+					<slider name="Nostril Width" v-model="emVars['details.19']"></slider>
+					<slider name="Tip Width" v-model="emVars['details.20']"></slider>
+					<slider name="Tip" v-model="emVars['details.21']"></slider>
+					<slider name="Nostril Flare" v-model="emVars['details.22']"></slider>
+					<slider name="Bend" v-model="emVars['details.29']"></slider>
+					<slider-h>Mouth</slider-h>
+					<slider name="Position" v-model="emVars['details.24']"></slider>
+					<slider name="Width" v-model="emVars['details.25']"></slider>
+					<slider name="Lip Thickness" v-model="emVars['details.26']"></slider>
+					<slider name="Gape" v-model="emVars['details.31']"></slider>
+					<slider name="Pucker" v-model="emVars['details.23']"></slider>
+					<slider name="Corners" v-model="emVars['details.27']"></slider>
+					<slider-h>Ears</slider-h>
+					<slider name="Rotation" v-model="emVars['details.4']"></slider>
+					<slider name="Extension" v-model="emVars['details.5']"></slider>
+					<slider name="Trim" v-model="emVars['details.6']"></slider>
+					<slider name="Size" v-model="emVars['details.7']"></slider>
+				</sliders>
+			</div>
+			<div class="content" v-if="tab === 'shape'">
+				<sliders>
+					<slider-h>Head</slider-h>
+					<slider name="Size" v-model="emVars['shape.0']"></slider>
+					<slider name="Width" v-model="emVars['shape.13']"></slider>
+					<slider name="Eye Width" v-model="emVars['shape.14']"></slider>
+					<slider name="Eye Shape" v-model="emVars['shape.15']"></slider>
+					<slider-h>Torso</slider-h>
+					<slider name="Neck Length" v-model="emVars['shape.16']"></slider>
+					<slider name="Spine Length 1" v-model="emVars['shape.12']"></slider>
+					<slider name="Spine Length 2" v-model="emVars['shape.11']"></slider>
+					<slider name="Spine Length 3" v-model="emVars['shape.10']"></slider>
+					<slider name="Spine Length 4" v-model="emVars['shape.9']"></slider>
+					<slider name="Arm Length" v-model="emVars['shape.6']"></slider>
+					<slider name="Arm Size" v-model="emVars['shape.5']"></slider>
+					<slider name="Forearm Length" v-model="emVars['shape.7']"></slider>
+					<slider name="Forearm Twist" v-model="emVars['shape.8']"></slider>
+					<slider name="Breast Size" v-model="emVars['shape.20']"></slider>
+					<slider name="Breast Width" v-model="emVars['shape.21']"></slider>
+					<slider name="Breast Separation" v-model="emVars['shape.22']"></slider>
+					<slider-h>Lower Body</slider-h>
+					<slider name="Thigh Length" v-model="emVars['shape.1']"></slider>
+					<slider name="Thigh Size" v-model="emVars['shape.2']"></slider>
+					<slider name="Calf Length" v-model="emVars['shape.3']"></slider>
+					<slider name="Calf Twist" v-model="emVars['shape.4']"></slider>
+					<slider name="Calf Size" v-model="emVars['shape.17']"></slider>
+					<slider-h>Misc</slider-h>
+					<slider name="Character Size" v-model="emVars['shape.18']"></slider>
+				</sliders>
+			</div>
+		</div>
+	</body>
+</html>
