@@ -1,18 +1,11 @@
 {
-	"data": {
-		"index.js": "49ROosK6zCirBO+XpfyeEzLu18sOGrdw37IdwrMzbls=",
-		"lib/index.js": "WrXDuUeDrV+iew81wreuAo8DYoVQhtNb2zRpZ53K2W0=",
-		"mod.json": "iUVJTQpZKXcn1QKa80sBjSL92YdpG2RgIl8nuI7Pcqo=",
-		"README.md": "IgKIlaHLfTIurIe2VjO2TRErmOtDoCZkNQQz8vBWvj8=",
-		"res/region/eu/db.json": "5GjHpVP/paLGK7xvwJGviO5t3c4B3w4qTq/bBdSMSHI=",
-		"res/region/eu/item_vehicle.json": "KcHtQh9RLj2KwQBBEsWD9NVVPKvjTQ88zLGdTfx+My0=",
-		"res/region/eu/name_item.json": "SI+kwY6MbIy97AkUMO3G0H0nDIBaEQI7c3trYoxeSM4=",
-		"res/region/eu/name_vehicle.json": "rxSKOY/+DEQOuSN9yzzRiNxEsiKrX7ZqtYLgzK/vj0Q=",
-		"res/region/eu/vehicles.json": "XT9aaHHfk4vUwLWrRcyuai8tjRg2RIysM4dW923zR9g=",
-		"res/ui/index.html": "IL8RsPHvszpL1zgggu28HDBrMXVF8Il4z+Fs5FyjGiI=",
-		"res/ui/lib/jquery-3.2.1.min.js": "hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=",
-		"res/ui/lib/vue.js": "CMMTrj5gGwOAXBeFi7kNokqowkzbeL8ydAJy39ewjkQ=",
-		"res/ui/main.css": "eMJ1jCo/F/lHKZCPGYM0KzTYwJAQyo6JjqNe45gysuo=",
-		"res/ui/main.js": "KJJnx5lq9Y0nRJomAXhYgBWz7XEmHlAZWTJE8wAMp/E="
-	}
+    "files": {
+        "index.js": "eb0e40de348400aff08dcb0028fe9ea4e0914e2d8fca7ca4a2bd319a4770b9aa",
+        "ui/index.html": "20bf11b0f1efb33a4bd7382082edbc1c306b317545f08978cfe16ce45ca31a22",
+        "ui/main.css": "78c2758c2a3f17f94729908f1983342b34d8c09010ca8e898ea35ee39832b2ea",
+        "ui/main.js": "289267c7996af58d27449a260178588015b3ed71261e5019593244f3000ca7f1",
+        "ui/lib/jquery-3.2.1.min.js": "87083882cc6015984eb0411a99d3981817f5dc5c90ba24f0940420c5548d82de",
+        "ui/lib/vue.js": "08c313ae3e601b03805c17858bb90da24aa8c24cdb78bf32740272dfd7b08e44"
+    },
+    "defs": {}
 }

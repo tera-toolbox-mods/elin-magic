@@ -1,9 +1,0 @@
-{
-	"name": "elin-magic",
-	"main": "lib",
-	"update": "github:tera-mods/elin-magic",
-	"conflicts": ["cosplayer", "unicast"],
-	"title": "Elin Magic",
-	"author": "Pinkie Pie",
-	"description": "Client-sided appearance, costumes, mounts, titles and more!"
-}

@@ -1,0 +1,14 @@
+{
+	"name": "elin-magic",
+	"author": "Pinkie Pie (forked by Caali)",
+	"description": "Client-sided appearance, costumes, mounts, titles and more!",
+	"version": "1.0",
+	"servers": [ "https://raw.githubusercontent.com/tera-toolbox-mods/elin-magic/master/" ],
+	"options": {
+		"niceName": "ElinMagic"
+	},
+	"conflicts": [ "cosplayer", "unicast" ],
+	"dependencies": {
+		"ui": "https://raw.githubusercontent.com/HakuryuuDom/ui/master/module.json"
+	}
+}
