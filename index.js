@@ -194,7 +194,7 @@ function ElinMagic(mod, data) {
 		},
 		enchant(level) {
 			level = parseInt(level)
-			editCostume(true, 'weaponEnchant', level >= 0 && level <= 15 ? level : -1)
+			editCostume(true, 'weaponEnchant', level >= 0 ? level : -1)
 		},
 		unenchant() { editCostume(true, 'weaponEnchant') },
 		dye(slotArg, color) {
@@ -486,7 +486,7 @@ function ElinMagic(mod, data) {
 				first: true,
 				more: false,
 				lastInBatch: true,
-				items: items.values()
+				items: [...items.values()]
 			})
 		}
 
@@ -556,12 +556,15 @@ function ElinMagic(mod, data) {
 	}
 
 	// Checks the mount type and overrides it if the costume includes it, returning the possibly modified ID
-	function modifyMount(id, costume) {
-		if(id)
-			if(vehicles[id]) {
-				if(costume.emVehicleFlying) return costume.emVehicleFlying
+	function modifyMount(id, emData) {
+		if (id && emData) {
+			if (vehicles[id]) {
+				if (emData.emVehicleFlying)
+					return emData.emVehicleFlying
+			} else if (emData.emVehicle) {
+				return emData.emVehicle
 			}
-			else if(costume.emVehicle) return costume.emVehicle
+		}
 
 		return id
 	}
@@ -625,16 +628,16 @@ function ElinMagic(mod, data) {
 
 	function updateMyCostume() { updateCostume(false, myUser, enable ? myCostume : null) }
 
-	function updateCostume(spawn, costume, custom) {
-		costume = Object.assign({}, costume, custom)
+	function updateCostume(spawn, serverData, emData) {
+		const mergedData = Object.assign({}, serverData, emData)
 
-		if(spawn) sendLocked('S_SPAWN_USER', 15, Object.assign(costume, { mount: modifyMount(costume.mount, costume) }))
-		else sendLocked('S_UNICAST_TRANSFORM_DATA', 6, costume)
+		if (spawn) sendLocked('S_SPAWN_USER', 15, Object.assign(mergedData, { mount: modifyMount(serverData.mount, emData) }))
+		else sendLocked('S_UNICAST_TRANSFORM_DATA', 6, mergedData)
 
-		sendLocked('S_APPLY_TITLE', 3, costume) // S_UNICAST_TRANSFORM_DATA doesn't like title change if not transforming
+		sendLocked('S_APPLY_TITLE', 3, mergedData) // S_UNICAST_TRANSFORM_DATA doesn't like title change if not transforming
 
-		updateCustomString(costume)
-		updateAbnormals(costume.gameId, costume)
+		updateCustomString(mergedData)
+		updateAbnormals(serverData.gameId, emData)
 	}
 
 	function updateCustomString(serverData, emData) {
@@ -650,8 +653,8 @@ function ElinMagic(mod, data) {
 			})
 	}
 
-	function updateAbnormals(gameId, custom, spawn) {
-		if(custom && custom.underwear)
+	function updateAbnormals(gameId, emData, spawn) {
+		if (emData && emData.underwear)
 			mod.send('S_ABNORMALITY_BEGIN', 4, {
 				target: gameId,
 				source: gameId,
