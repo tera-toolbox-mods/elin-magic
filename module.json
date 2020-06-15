@@ -5,7 +5,8 @@
 	"version": "1.0",
 	"servers": [ "https://raw.githubusercontent.com/tera-toolbox-mods/elin-magic/master/" ],
 	"options": {
-		"niceName": "ElinMagic"
+		"cliName": "EM",
+		"guiName": "Elin Magic"
 	},
 	"conflicts": [ "cosplayer", "unicast" ],
 	"dependencies": {

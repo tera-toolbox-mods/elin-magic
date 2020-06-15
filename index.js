@@ -587,6 +587,12 @@ function ElinMagic(mod, data) {
 		// Sanitize
 		let cloned = false
 
+		// Workaround S_UNICAST_TRANSFORM_DATA - title is 32bit in all other packets
+		if (typeof event.title === 'bigint') {
+			event = Object.assign({}, event, { title: Number(event.title & 0xffffffffn) })
+			cloned = true
+		}
+
 		for(let key in event)
 			if(key.startsWith('unk')) {
 				if(!cloned) {
@@ -807,7 +813,7 @@ async function loadData(mod) {
 	return { itemVehicle, nameVehicle, vehicles, dbItem };
 }
 
-module.exports = function Loader(mod) {
+exports.NetworkMod = function(mod) {
 	mod.game.initialize('inventory');
 
 	let userListPacket = null;
@@ -825,4 +831,4 @@ module.exports = function Loader(mod) {
 			userListPacket = null;
 		}
 	});
-};
+}
