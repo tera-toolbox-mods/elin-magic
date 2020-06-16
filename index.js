@@ -336,7 +336,7 @@ function ElinMagic(mod, data) {
 
 	ui.use(UI.static(path.join(__dirname, 'ui')))
 
-	mod.hook('S_GET_USER_LIST', 17, HOOK_WRITE, event => {
+	mod.hook('S_GET_USER_LIST', mod.majorPatchVersion >= 95 ? 18 : 17, HOOK_WRITE, event => {
 		myUser = myCostume = null
 
 		let modified
