@@ -336,7 +336,7 @@ function ElinMagic(mod, data) {
 
 	ui.use(UI.static(path.join(__dirname, 'ui')))
 
-	mod.hook('S_GET_USER_LIST', mod.majorPatchVersion >= 95 ? 18 : 17, HOOK_WRITE, event => {
+	mod.hook('S_GET_USER_LIST', 18, HOOK_WRITE, event => {
 		myUser = myCostume = null
 
 		let modified
@@ -427,7 +427,7 @@ function ElinMagic(mod, data) {
 		}
 	})
 
-	mod.hook('S_ITEMLIST', 3, HOOK_READ, event => {
+	mod.hook('S_ITEMLIST', mod.majorPatchVersion >= 97 ? 4 : 3, HOOK_READ, event => {
 		// Cache inventory so we can restore it later on
 		invenChunksTemp.push(event)
 
@@ -480,7 +480,7 @@ function ElinMagic(mod, data) {
 			}
 
 			// Serialize a minimal inventory for the game to pull appearance data from
-			mod.send('S_ITEMLIST', 3, {
+			mod.send('S_ITEMLIST', mod.majorPatchVersion >= 97 ? 4 : 3, {
 				gameId: mod.game.me.gameId,
 				container: 14,
 				first: true,
@@ -511,7 +511,7 @@ function ElinMagic(mod, data) {
 				process.nextTick(() => {
 					// Restore inventory now that the client is (probably) done with it
 					// This is more efficient than sending an appearance packet because no unnecessary models are loaded
-					for(let chunk of invenChunks) mod.send('S_ITEMLIST', 3, chunk)
+					for(let chunk of invenChunks) mod.send('S_ITEMLIST', mod.majorPatchVersion >= 97 ? 4 : 3, chunk)
 				})
 		}
 
