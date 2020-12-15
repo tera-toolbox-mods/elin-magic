@@ -336,7 +336,7 @@ function ElinMagic(mod, data) {
 
 	ui.use(UI.static(path.join(__dirname, 'ui')))
 
-	mod.hook('S_GET_USER_LIST', 18, HOOK_WRITE, event => {
+	mod.hook('S_GET_USER_LIST', mod.majorPatchVersion >= 101 ? 19 : 18, HOOK_WRITE, event => {
 		myUser = myCostume = null
 
 		let modified
@@ -637,7 +637,7 @@ function ElinMagic(mod, data) {
 	function updateCostume(spawn, serverData, emData) {
 		const mergedData = Object.assign({}, serverData, emData)
 
-		if (spawn) sendLocked('S_SPAWN_USER', 15, Object.assign(mergedData, { mount: modifyMount(serverData.mount, emData) }))
+		if (spawn) sendLocked('S_SPAWN_USER', 17, Object.assign(mergedData, { mount: modifyMount(serverData.mount, emData) }))
 		else sendLocked('S_UNICAST_TRANSFORM_DATA', 6, mergedData)
 
 		sendLocked('S_APPLY_TITLE', 3, mergedData) // S_UNICAST_TRANSFORM_DATA doesn't like title change if not transforming
